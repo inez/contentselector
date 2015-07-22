@@ -1,0 +1,22 @@
+application: contentselector
+version: 1
+runtime: php55
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /foundation-5.5.2
+  static_dir: foundation-5.5.2
+
+- url: /js
+  static_dir: js
+
+- url: /templates
+  static_dir: templates
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: .*
+  script: main.php

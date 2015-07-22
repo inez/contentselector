@@ -1,0 +1,30 @@
+<form ng-submit="todoList.addTodo()">
+<div class="row">
+	<div class="small-12 columns">
+		<label>
+			Project name
+			<input ng-model="name" type="text" placeholder="Top 10 for Call of Duty"/>
+		</label>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<label>
+			Wiki domain
+			<input ng-model="domain" type="text" placeholder="callofduty.wikia.com"/>
+		</label>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		<label>
+			Articles (one title per line)
+			<textarea ng-model="articles" rows="10" placeholder="..."></textarea>
+		</label>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		<a ng-click="create()" href="#" class="button expand">Create</a>
+	</div>
+</div>
