@@ -63,6 +63,7 @@ var app = angular.module('ngContentSelector', ['ngRoute', 'ngSanitize']);
 
 app.controller('ProjectListController', function($scope, $route, $routeParams, $location, myService) {
 	$scope.projects = [];
+	$scope.isLoading = true;
 	myService.getProjects().then(function(projects) {
 		for(var index in projects) {
 			$scope.projects.push({
@@ -72,6 +73,7 @@ app.controller('ProjectListController', function($scope, $route, $routeParams, $
 				articles: projects[index].articles,
 			});
 		}
+		$scope.isLoading = false;
 	});
 	$scope.getXML = function(project) {
 		var articles = [];		

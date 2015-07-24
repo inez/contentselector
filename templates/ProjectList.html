@@ -1,7 +1,13 @@
-Projects count: {{projects.length}}
-<ul>
-	<li ng-repeat="project in projects">
-		<a href="/Project/Edit/{{project.id}}">{{project.name}} / {{project.domain}} ({{project.articles.length}})</a> - <a href="" ng-click="getXML(project)">Get XML</a>
-	</li>
-</ul>
-<a href="/Project/Create">Create new</a>
+<div ng-if="isLoading" data-alert class="alert-box">
+  Patience is a virtue... so keep waiting
+</div>
+
+<div ng-if="!isLoading">
+	Projects count: {{projects.length}}
+	<ul>
+		<li ng-repeat="project in projects">
+			<a href="/Project/Edit/{{project.id}}">{{project.name}} / {{project.domain}} ({{project.articles.length}})</a> - <a href="" ng-click="getXML(project)">Get XML</a>
+		</li>
+	</ul>
+	<a href="/Project/Create">Create new</a>
+</div>
