@@ -1,0 +1,24 @@
+<b>Title: {{articles[index].title}} {{index+1}}/{{articles.length}}</b>
+<br/>
+<br/>
+<br/>
+	<div class="row">
+		<div class="small-10 columns">
+			<div ng-repeat="element in elements" class="content-container">
+				<div ng-class="{selected: element.selected}" ng-if="element.type==='paragraph' || element.type==='image' || element.type==='heading' || element.type==='list'" ng-bind-html="element.content" ng-mouseover="mouseover(element)" ng-mouseout="mouseout(element)" ng-click="click(element, $event)"></div>
+				<div ng-if="element.type==='extension'">
+					Extension: {{element.name}}
+				</div>
+				<div ng-if="element.type==='template'">
+					Template: {{element.name}}
+				</div>
+			</div>
+		</div>
+		<div class="small-2 columns">
+			<div style="position: fixed; top: 20px;">
+				<button class="small" ng-click="prev()" ng-disabled="index===0">Previous article</button>
+				<button class="small" ng-click="next()" ng-disabled="index===articles.length-1">Next article</button>
+				<p>Selected word count: {{wordCount}}</p>
+			</div>
+		</div>
+	</div>
