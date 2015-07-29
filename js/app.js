@@ -78,27 +78,31 @@ app.controller('ProjectListController', function($scope, $route, $routeParams, $
 		alert(err);
 	});
 	$scope.getXML = function(project) {
-		var articles = [];		
-
-		for(var i = 0; i < project.articles.length; i++) {
-			var htmlDOM = [];
-			var article = project.articles[i];
-			var doc = createDocumentFromHtmlUsingDomParser(article.content);
-			for(var index in article.selected) {
-				var element = doc.body.children[index];
-				$(element).find('[typeof="mw:Extension/ref"]').remove();
-				htmlDOM.push(element.outerHTML);
+		myService.getProject(project.id).then(function(data) {
+			project.articles = data.articles;
+			var articles = [];
+			for(var i = 0; i < project.articles.length; i++) {
+				var htmlDOM = [];
+				var article = project.articles[i];
+				var doc = createDocumentFromHtmlUsingDomParser(article.content);
+				for(var index in article.selected) {
+					var element = doc.body.children[index];
+					$(element).find('[typeof="mw:Extension/ref"]').remove();
+					htmlDOM.push(element.outerHTML);
+				}
+				articles.push({
+					htmldom: htmlDOM.join("\n\n"),
+					title: article.title,
+					oldid: article.oldid
+				});
 			}
-			articles.push({
-				htmldom: htmlDOM.join("\n\n"),
-				title: article.title,
-				oldid: article.oldid
-			});
-		}
-		var $form = $('<form action="http://public.inez.wikia-dev.com/contentselector/proxy.php?mode=multi" method="POST"></form>');
-		$('<input name="articles" type="hidden"/>').val(JSON.stringify(articles)).appendTo($form);
-		$('<input name="domain" type="hidden"/>').val(project.domain).appendTo($form);
-		$form.submit();
+			var $form = $('<form action="http://public.inez.wikia-dev.com/contentselector/proxy.php?mode=multi" method="POST"></form>');
+			$('<input name="articles" type="hidden"/>').val(JSON.stringify(articles)).appendTo($form);
+			$('<input name="domain" type="hidden"/>').val(project.domain).appendTo($form);
+			$form.submit();
+		}, function(err) {
+			alert(err);
+		});
 	};
 
 });
