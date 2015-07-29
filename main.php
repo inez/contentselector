@@ -16,8 +16,8 @@
 	<script src="/js/angular.min.js"></script>
 	<script src="/js/angular-route.min.js"></script>
 	<script src="/js/angular-sanitize.min.js"></script>
-	<script src="/js/app.js"></script>
-	<script src="/js/myService.js"></script>
+	<script src="/js/app.js?1"></script>
+	<script src="/js/myService.js?1"></script>
 	<style>
 	.content-container a {
 		cursor: default;
