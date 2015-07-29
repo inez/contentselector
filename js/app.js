@@ -74,6 +74,8 @@ app.controller('ProjectListController', function($scope, $route, $routeParams, $
 			});
 		}
 		$scope.isLoading = false;
+	}, function(err) {
+		alert(err);
 	});
 	$scope.getXML = function(project) {
 		var articles = [];		
@@ -126,10 +128,14 @@ app.controller('ProjectCreateController', function($scope, $route, $routeParams,
 });
 
 app.controller('ProjectEditController', function($scope, $route, $routeParams, $location, $routeParams, myService) {
+	$scope.isLoading = true;
 	myService.getProject($routeParams.projectId).then(function(data) {
 		$scope.articles = data.articles;
 		$scope.domain = data.domain;
 		$scope.index = 0;
+		$scope.isLoading = false;
+	}, function(err) {
+		alert(err);
 	});
 
 	$scope.prev = function() { $scope.index--; };

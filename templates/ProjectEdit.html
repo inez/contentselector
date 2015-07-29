@@ -1,7 +1,12 @@
-<b>Title: {{articles[index].title}} {{index+1}}/{{articles.length}}</b>
-<br/>
-<br/>
-<br/>
+<div ng-if="isLoading" data-alert class="alert-box">
+  Patience is a virtue... so keep waiting
+</div>
+
+<div ng-if="!isLoading">
+	<b>Title: {{articles[index].title}} {{index+1}}/{{articles.length}}</b>
+	<br/>
+	<br/>
+	<br/>
 	<div class="row">
 		<div class="small-10 columns">
 			<div ng-repeat="element in elements" class="content-container">
@@ -22,3 +27,4 @@
 			</div>
 		</div>
 	</div>
+</div>
