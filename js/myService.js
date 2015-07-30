@@ -88,7 +88,7 @@ app.factory('myService', function($q) {
 						for(var i = 0; i < arguments.length; i++) {
 							project.articles.push({
 								title: articlesNames[i],
-  								content: arguments[i][0].visualeditor.content,
+  								//content: arguments[i][0].visualeditor.content,
   								oldid: arguments[i][0].visualeditor.oldid,
   								selected: []
 							});

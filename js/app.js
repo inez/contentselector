@@ -13,9 +13,22 @@ var createDocumentFromHtmlUsingDomParser = function ( html ) {
 var getElement = function(element) {
 	var typeofAttribute = element.getAttribute('typeof');
 	if ( typeofAttribute && typeofAttribute === 'mw:Transclusion' ) {
+		var templateName = 'unknown';
+		try {
+			templateName = $(element).data('mw').parts[0].template.target.href;
+		} catch(e) {
+			try {
+				templateName = $(element).data('mw').parts[1].template.target.href;
+			} catch(e) {
+				try {
+					templateName = $(element).data('mw').parts[2].template.target.href;
+				} catch(e) {
+				}
+			}
+		}
 		return {
 			type: 'template',
-			name: $(element).data('mw').parts[0].template.target.href
+			name: templateName
 		};
 	} else if ( typeofAttribute && typeofAttribute.indexOf('mw:Image') === 0 ) {
 		return {
