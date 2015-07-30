@@ -19,7 +19,7 @@ app.factory('myService', function($q) {
 					for(var i = 0; i < data.articles.length; i++) {
 						reqs.push(
 							$.getJSON(
-								'http://' + data.domain + '/api.php?format=json&uselang=en&action=visualeditor&paction=parse&page=' + data.articles[i]['title'] + '&oldid=' + data.articles[i]['oldid'] + '&callback=?'
+								'http://' + data.domain + '/api.php?format=json&uselang=en&action=visualeditor&paction=parse&page=' + encodeURIComponent(data.articles[i]['title']) + '&oldid=' + data.articles[i]['oldid'] + '&callback=?'
 							)
 						);
 					}
@@ -70,7 +70,7 @@ app.factory('myService', function($q) {
 					var articleName = articlesNames[i];
 					reqs.push(
 						$.getJSON(
-							'http://' + domain + '/api.php?format=json&uselang=en&action=visualeditor&paction=parse&page=' + articleName + '&callback=?'
+							'http://' + domain + '/api.php?format=json&uselang=en&action=visualeditor&paction=parse&page=' + encodeURIComponent(articleName) + '&callback=?'
 						)
 					);
 				}
