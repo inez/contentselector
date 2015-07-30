@@ -1,5 +1,13 @@
 var myFirebaseRef = new Firebase("https://contentselector.firebaseio.com/");
 
+function encodeMaybe(str) {
+	if ( str.indexOf('%') > -1 ) {
+		return str;
+	} else {
+		return encodeURIComponent(str);
+	}
+}
+
 app.factory('myService', function($q) {
 	console.log('myService');
 	return {
@@ -19,7 +27,7 @@ app.factory('myService', function($q) {
 					for(var i = 0; i < data.articles.length; i++) {
 						reqs.push(
 							$.getJSON(
-								'http://' + data.domain + '/api.php?format=json&uselang=en&action=visualeditor&paction=parse&page=' + encodeURIComponent(data.articles[i]['title']) + '&oldid=' + data.articles[i]['oldid'] + '&callback=?'
+								'http://' + data.domain + '/api.php?format=json&uselang=en&action=visualeditor&paction=parse&page=' + encodeMaybe(data.articles[i]['title']) + '&oldid=' + data.articles[i]['oldid'] + '&callback=?'
 							)
 						);
 					}
@@ -70,7 +78,7 @@ app.factory('myService', function($q) {
 					var articleName = articlesNames[i];
 					reqs.push(
 						$.getJSON(
-							'http://' + domain + '/api.php?format=json&uselang=en&action=visualeditor&paction=parse&page=' + encodeURIComponent(articleName) + '&callback=?'
+							'http://' + domain + '/api.php?format=json&uselang=en&action=visualeditor&paction=parse&page=' + encodeMaybe(articleName) + '&callback=?'
 						)
 					);
 				}
