@@ -90,6 +90,14 @@ app.controller('ProjectListController', function($scope, $route, $routeParams, $
 	}, function(err) {
 		alert(err);
 	});
+	$scope.remove = function(project) {
+		if(confirm("Are you sure you want to remove this project?")) {
+			if(confirm("I'm not joking. You are about to remove project: " + project.name + ". Are you sure?")) {
+				$scope.projects.splice($scope.projects.indexOf(project), 1);
+				new Firebase("https://contentselector.firebaseio.com/projects/" + project.id).remove();
+			}
+		}
+	};
 	$scope.getXML = function(project) {
 		myService.getProject(project.id).then(function(data) {
 			project.articles = data.articles;
