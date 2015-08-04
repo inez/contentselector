@@ -45,7 +45,7 @@ if ( $_GET['mode'] === 'single' ) {
 	for($i = 0; $i < count($articles); $i++) {
 		if ( strlen ( trim ( $articles[$i]['wt'] ) ) > 0 ) { 
 			$xml .= '<page>';
-			$xml .= '<title>' . $articles[$i]['title'] . '</title>';
+			$xml .= '<title>' . htmlspecialchars(urldecode($articles[$i]['title'])) . '</title>';
 			$xml .= '<revision>';
 			$xml .= '<timestamp>' . date("Y-m-d\TH:i:sO") . '</timestamp><contributor><ip>10.0.0.1</ip></contributor><comment>hey</comment>';
 			$xml .= '<text xml:space="preserve">' . htmlspecialchars(trim($articles[$i]['wt'])) . '</text>';
