@@ -7,7 +7,7 @@ function getWT($domain, $articleName, $oldid, $htmldom) {
 	    'uselang' => 'en',
 	    'action' => 'visualeditor',
 	    'paction' => 'serialize',
-	    'page' => $articleName,
+	    'page' => urldecode($articleName),
 	    'oldid' => $oldid,
 	    'html' => $htmldom
 	);
